@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff3a6">
+  <title>Marrrya 9iwww! — The Giggle Button</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #282044;
+      --pink: #ff67a4;
+      --purple: #7355e8;
+      --yellow: #fff3a6;
+      --paper: #fffdf5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      overflow-x: hidden;
+      padding: 28px 18px;
+      color: var(--ink);
+      background-color: var(--yellow);
+      background-image: radial-gradient(#e9cf65 1px, transparent 1px);
+      background-size: 20px 20px;
+      font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+    }
+
+    button { font: inherit; }
+
+    .stage {
+      position: relative;
+      width: min(100%, 720px);
+      padding: clamp(26px, 7vw, 58px);
+      overflow: hidden;
+      border: 3px solid var(--ink);
+      border-radius: 32px;
+      background: var(--paper);
+      box-shadow: 10px 12px 0 var(--ink);
+      text-align: center;
+    }
+
+    .sparkle {
+      position: absolute;
+      font-size: 32px;
+      animation: bob 2.3s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    .sparkle-one { top: 26px; left: 28px; }
+    .sparkle-two { top: 48px; right: 30px; animation-delay: .5s; }
+    .sparkle-three { right: 38px; bottom: 30px; animation-delay: .9s; }
+
+    .sticker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      background: #b8f2d2;
+      box-shadow: 3px 3px 0 var(--ink);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+    }
+
+    h1 {
+      margin: 27px 0 9px;
+      font-size: clamp(42px, 10vw, 82px);
+      font-weight: 1000;
+      letter-spacing: -.075em;
+      line-height: .95;
+      text-wrap: balance;
+    }
+
+    h1 span {
+      display: inline-block;
+      color: var(--purple);
+      text-shadow: 3px 3px 0 #e4d9ff;
+    }
+
+    .intro {
+      max-width: 430px;
+      margin: 18px auto 27px;
+      color: #625b73;
+      font-size: clamp(15px, 3vw, 18px);
+      line-height: 1.6;
+    }
+
+    .face {
+      display: grid;
+      width: 150px;
+      height: 150px;
+      place-items: center;
+      margin: 0 auto 27px;
+      border: 3px solid var(--ink);
+      border-radius: 48% 52% 45% 55%;
+      background: #ffb7ce;
+      box-shadow: 6px 7px 0 var(--ink);
+      font-size: 84px;
+      transform: rotate(-5deg);
+      transition: transform .18s ease;
+    }
+
+    .stage.is-giggling .face { animation: giggle .28s ease-in-out infinite alternate; }
+    .stage.is-giggling h1 span { animation: wobble .35s ease-in-out infinite alternate; }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .button {
+      min-height: 52px;
+      padding: 13px 19px;
+      border: 2px solid var(--ink);
+      border-radius: 15px;
+      background: white;
+      box-shadow: 4px 4px 0 var(--ink);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 900;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+
+    .button:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+    .button:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
+    .button:focus-visible { outline: 4px solid #ff9f36; outline-offset: 4px; }
+    .button-primary { background: var(--pink); }
+    .button-giggle { background: #c7b8ff; }
+
+    .status {
+      min-height: 28px;
+      margin: 22px 0 0;
+      color: #625b73;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .fine-print {
+      margin: 16px 0 0;
+      color: #827b90;
+      font-size: 12px;
+    }
+
+    @keyframes bob { to { transform: translateY(-9px) rotate(12deg); } }
+    @keyframes giggle { to { transform: rotate(7deg) scale(1.08); } }
+    @keyframes wobble { to { transform: rotate(5deg) scale(1.04); } }
+
+    @media (max-width: 480px) {
+      .stage { border-radius: 24px; box-shadow: 6px 7px 0 var(--ink); }
+      .sparkle { font-size: 24px; }
+      .sparkle-one { top: 17px; left: 17px; }
+      .sparkle-two { top: 28px; right: 18px; }
+      .sparkle-three { right: 18px; bottom: 16px; }
+      .face { width: 126px; height: 126px; font-size: 70px; }
+      .buttons { display: grid; }
+      .button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage" id="stage">
+    <span class="sparkle sparkle-one" aria-hidden="true">✨</span>
+    <span class="sparkle sparkle-two" aria-hidden="true">💫</span>
+    <span class="sparkle sparkle-three" aria-hidden="true">⭐</span>
+
+    <div class="sticker"><span aria-hidden="true">📢</span> Extremely important announcement</div>
+    <h1>Marrrya<br><span>9iwww!</span></h1>
+    <p class="intro">A completely serious message, delivered with a very unserious amount of giggling.</p>
+    <div class="face" id="face" aria-hidden="true">🤭</div>
+
+    <div class="buttons">
+      <button class="button button-primary" id="say-button" type="button">🔊 Say the magic words</button>
+      <button class="button button-giggle" id="giggle-button" type="button">😂 Hysterical meme laugh</button>
+      <button class="button" id="stop-button" type="button">🤫 Stop the chaos</button>
+    </div>
+
+    <p class="status" id="status" role="status" aria-live="polite">Press a button. You know you want to.</p>
+    <p class="fine-print">Sound starts only when you press a button. No surprise giggles. Probably.</p>
+  </main>
+
+  <script>
+    const stage = document.querySelector("#stage");
+    const status = document.querySelector("#status");
+    const sayButton = document.querySelector("#say-button");
+    const giggleButton = document.querySelector("#giggle-button");
+    const stopButton = document.querySelector("#stop-button");
+    const SpeechSynthesisUtteranceConstructor = window.SpeechSynthesisUtterance;
+    const speech = window.speechSynthesis;
+    const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
+    let audioContext;
+    let activeOscillators = [];
+    let animationTimer;
+
+    function showGiggles() {
+      stage.classList.add("is-giggling");
+      window.clearTimeout(animationTimer);
+      animationTimer = window.setTimeout(() => stage.classList.remove("is-giggling"), 1600);
+    }
+
+    async function playGiggle() {
+      if (speech && SpeechSynthesisUtteranceConstructor) {
+        try {
+          speech.cancel();
+          const laughs = [
+            "Ha! Ha! Ha! Ha ha ha ha! HAAAA!",
+            "Bwahahaha! Ha ha ha ha! I can't stop!",
+            "Heh! Ha ha ha ha ha! Oh no, that's too funny!"
+          ];
+          const laugh = new SpeechSynthesisUtteranceConstructor(
+            laughs[Math.floor(Math.random() * laughs.length)]
+          );
+          laugh.rate = 1.18;
+          laugh.pitch = 1.75;
+          laugh.onstart = () => {
+            showGiggles();
+            status.textContent = "BWAAHAHAHA! Meme-level giggles incoming.";
+          };
+          laugh.onend = () => {
+            status.textContent = "That laugh deserves its own reaction meme.";
+          };
+          laugh.onerror = (event) => {
+            if (event.error !== "canceled" && event.error !== "interrupted") {
+              status.textContent = "Couldn't play the spoken laugh. Trying the sound effect instead!";
+              void playGiggleSound();
+            }
+          };
+          speech.speak(laugh);
+          return;
+        } catch (error) {
+          status.textContent = "Couldn't start the spoken laugh. Trying the sound effect instead!";
+          console.error("Unable to speak the meme laugh:", error);
+        }
+      }
+
+      await playGiggleSound();
+    }
+
+    async function playGiggleSound() {
+      if (!AudioContextConstructor) {
+        status.textContent = "This browser can't play the giggle sound. Try the speak button instead!";
+        return;
+      }
+
+      try {
+        audioContext ??= new AudioContextConstructor();
+        if (audioContext.state === "suspended") await audioContext.resume();
+
+        const now = audioContext.currentTime;
+        for (let i = 0; i < 7; i += 1) {
+          const start = now + i * 0.17;
+          const duration = 0.14 + Math.random() * 0.07;
+          const oscillator = audioContext.createOscillator();
+          const volume = audioContext.createGain();
+          const pitch = 460 + Math.random() * 260;
+
+          oscillator.type = "triangle";
+          oscillator.frequency.setValueAtTime(pitch, start);
+          oscillator.frequency.exponentialRampToValueAtTime(pitch * 1.35, start + duration * 0.42);
+          oscillator.frequency.exponentialRampToValueAtTime(pitch * 0.9, start + duration);
+          volume.gain.setValueAtTime(0.001, start);
+          volume.gain.exponentialRampToValueAtTime(0.16, start + 0.025);
+          volume.gain.exponentialRampToValueAtTime(0.001, start + duration);
+          oscillator.connect(volume);
+          volume.connect(audioContext.destination);
+          oscillator.onended = () => {
+            activeOscillators = activeOscillators.filter((item) => item !== oscillator);
+            oscillator.disconnect();
+            volume.disconnect();
+          };
+          activeOscillators.push(oscillator);
+          oscillator.start(start);
+          oscillator.stop(start + duration + 0.02);
+        }
+
+        showGiggles();
+        status.textContent = "Hee hee hee! The backup giggle machine is working.";
+      } catch (error) {
+        status.textContent = "Couldn't play the giggle sound in this browser. Try the speak button instead.";
+        console.error("Unable to play the giggle sound:", error);
+      }
+    }
+
+    function sayTheWords() {
+      if (!speech || !SpeechSynthesisUtteranceConstructor) {
+        status.textContent = "Speech isn't available in this browser, but the giggle button still works!";
+        return;
+      }
+
+      speech.cancel();
+      const message = new SpeechSynthesisUtteranceConstructor("Marrrya... 9iwww!");
+      message.rate = 0.82;
+      message.pitch = 1.35;
+      message.onstart = showGiggles;
+      message.onend = () => {
+        status.textContent = "Announcement complete. Dignity not included.";
+        void playGiggle();
+      };
+      message.onerror = (event) => {
+        if (event.error !== "canceled" && event.error !== "interrupted") {
+          status.textContent = "Couldn't speak the magic words. Try the giggle button!";
+        }
+      };
+
+      try {
+        speech.speak(message);
+        status.textContent = "Broadcasting the important message...";
+      } catch (error) {
+        status.textContent = "Couldn't start speech in this browser. Try the giggle button!";
+        console.error("Unable to speak the magic words:", error);
+      }
+    }
+
+    function stopTheChaos() {
+      if (speech) speech.cancel();
+      activeOscillators.forEach((oscillator) => oscillator.stop());
+      activeOscillators = [];
+      window.clearTimeout(animationTimer);
+      stage.classList.remove("is-giggling");
+      status.textContent = "Chaos paused. The giggles are thinking about it.";
+    }
+
+    sayButton.addEventListener("click", sayTheWords);
+    giggleButton.addEventListener("click", () => void playGiggle());
+    stopButton.addEventListener("click", stopTheChaos);
+  </script>
+</body>
+</html>
